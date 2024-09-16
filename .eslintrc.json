@@ -1,0 +1,16 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended",
+    "plugin:styled-components/a11y"
+  ],
+  "plugins": ["@typescript-eslint", "styled-components"],
+  "rules": {
+    "prettier/prettier": ["error"],
+    "styled-components-a11y/alt-text": "warn",
+    "styled-components-a11y/anchor-is-valid": "warn",
+    "styled-components-a11y/label-has-associated-control": "warn"
+  }
+}
