@@ -2,6 +2,7 @@ import { flow, Instance, t } from 'mobx-state-tree';
 import { MetersModel } from './MetersModel';
 import { AddressModel } from './AdressModel';
 import { deleteMeter, fetchAddress, fetchMeters } from '../api/apiService';
+import { Address, Meter } from '../types/types';
 
 export const RootStore = t
   .model('RootStore', {

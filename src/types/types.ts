@@ -4,7 +4,7 @@ interface House {
   fias_addrobjs: string[];
 }
 
-interface Address {
+export interface Address {
   id: string;
   number: number;
   str_number: string;
@@ -16,7 +16,7 @@ interface Area {
   id: string;
 }
 
-interface Meter {
+export interface Meter {
   id: string;
   _type: string[];
   area: Area;
