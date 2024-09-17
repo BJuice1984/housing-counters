@@ -1,5 +1,4 @@
 import { t } from 'mobx-state-tree';
-import { AddressModel } from './AdressModel';
 
 export const MetersModel = t.model('MetersModel', {
   id: t.identifier,
@@ -12,5 +11,4 @@ export const MetersModel = t.model('MetersModel', {
   serial_number: t.string,
   installation_date: t.string,
   initial_values: t.array(t.number),
-  address: t.maybe(t.reference(AddressModel)),
 });

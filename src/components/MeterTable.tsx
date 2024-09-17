@@ -39,19 +39,27 @@ const MeterTable = observer(() => {
               <td>
                 {meter._type.includes('HotWaterAreaMeter') ? 'ГВС' : 'ХВС'}
               </td>
-              <td>{new Date(meter.installation_date).toLocaleDateString()}</td>
-              <td>{meter.is_automatic ? 'Да' : 'Нет'}</td>
-              <td>{meter.initial_values[0]}</td>
-              {/* <td>
-                {store.addresses.get(meter.area.id)
-                  ? `${store.addresses.get(meter.area.id).house.address}, ${store.addresses.get(meter.area.id).str_number_full}`
-                  : 'Загрузка'}
-              </td> */}
-              <td>{meter.description}</td>
               <td>
-                {/* <button onClick={() => store.deleteMeter(meter.id)}>
+                {meter.installation_date
+                  ? new Date(meter.installation_date).toLocaleDateString()
+                  : 'Неизвестно'}
+              </td>
+              <td>{meter.is_automatic ? 'Да' : 'Нет'}</td>
+              <td>
+                {meter.initial_values.length > 0
+                  ? meter.initial_values[0]
+                  : 'Нет данных'}
+              </td>
+              <td>
+                {store.addresses.has(meter.area.id)
+                  ? `${store.addresses.get(meter.area.id)?.house.address}, ${store.addresses.get(meter.area.id)?.str_number_full}`
+                  : 'Загрузка'}
+              </td>
+              <td>{meter.description || 'Нет данных'}</td>
+              <td>
+                <button onClick={() => store.deleteMeter(meter.id)}>
                   Удалить
-                </button> */}
+                </button>
               </td>
             </tr>
           ))}
