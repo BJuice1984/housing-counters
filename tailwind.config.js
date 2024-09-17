@@ -1,22 +1,22 @@
-// tailwind.config.js
 module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx,html}'],
   theme: {
     extend: {
       colors: {
+        'background-main': '#F8F9FA',
         'background-light': '#FFFFFF',
         'background-secondary': '#F0F3F7',
         'background-hover': '#F7F8F9',
-        'background-card': '#E0E5EB',
+        'background-table': '#E0E5EB',
         'background-alert': '#FEE3E3',
         'text-main': '#1F2939',
       },
       fontFamily: {
         primary: [
+          'Roboto',
           '-apple-system',
           'BlinkMacSystemFont',
           'Segoe UI',
-          'Roboto',
           'Oxygen',
           'Ubuntu',
           'Cantarell',

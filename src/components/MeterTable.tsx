@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { observer } from 'mobx-react';
 import { useStore } from '../models/RootStore';
+import MeterRow from './MeterRow';
 
 const MeterTable = observer(() => {
   const store = useStore();
@@ -19,7 +20,7 @@ const MeterTable = observer(() => {
 
   return (
     <div style={{ maxHeight: '500px', overflowY: 'scroll' }}>
-      <table>
+      <table className="min-w-full divide-y divide-gray-200">
         <thead>
           <tr>
             <th>#</th>
@@ -34,34 +35,13 @@ const MeterTable = observer(() => {
         </thead>
         <tbody>
           {store.meters.map((meter, index) => (
-            <tr key={meter.id}>
-              <td>{index + 1}</td>
-              <td>
-                {meter._type.includes('HotWaterAreaMeter') ? 'ГВС' : 'ХВС'}
-              </td>
-              <td>
-                {meter.installation_date
-                  ? new Date(meter.installation_date).toLocaleDateString()
-                  : 'Неизвестно'}
-              </td>
-              <td>{meter.is_automatic ? 'Да' : 'Нет'}</td>
-              <td>
-                {meter.initial_values.length > 0
-                  ? meter.initial_values[0]
-                  : 'Нет данных'}
-              </td>
-              <td>
-                {store.addresses.has(meter.area.id)
-                  ? `${store.addresses.get(meter.area.id)?.house.address}, ${store.addresses.get(meter.area.id)?.str_number_full}`
-                  : 'Загрузка'}
-              </td>
-              <td>{meter.description || 'Нет данных'}</td>
-              <td>
-                <button onClick={() => store.deleteMeter(meter.id)}>
-                  Удалить
-                </button>
-              </td>
-            </tr>
+            <MeterRow
+              key={meter.id}
+              meter={meter}
+              address={store.addresses.get(meter.area.id)}
+              onDelete={store.deleteMeter}
+              index={index}
+            />
           ))}
         </tbody>
       </table>

@@ -2,7 +2,7 @@ import { flow, Instance, t } from 'mobx-state-tree';
 import { MetersModel } from './MetersModel';
 import { AddressModel } from './AdressModel';
 import { deleteMeter, fetchAddress, fetchMeters } from '../api/apiService';
-import { Address, Meter } from '../types/types';
+import { IAddress, IMeter } from '../types/types';
 
 export const RootStore = t
   .model('RootStore', {
@@ -14,15 +14,15 @@ export const RootStore = t
     fetchMeters: flow(function* () {
       self.status = 'pending';
       try {
-        const response: { results: Meter[] } = yield fetchMeters(20, 20);
-        const meterModels = response.results.map((meter: Meter) =>
+        const response: { results: IMeter[] } = yield fetchMeters(20, 20);
+        const meterModels = response.results.map((meter: IMeter) =>
           MetersModel.create(meter)
         );
         self.meters.replace(meterModels);
         self.status = 'done';
 
         const areaIds = [
-          ...new Set(response.results.map((meter: Meter) => meter.area.id)),
+          ...new Set(response.results.map((meter: IMeter) => meter.area.id)),
         ];
         //@ts-ignore
         yield self.fetchAddresses(areaIds);
@@ -36,12 +36,13 @@ export const RootStore = t
       if (newAreasIds.length > 0) {
         for (const id of newAreasIds) {
           try {
-            const response: Address = yield fetchAddress(id);
+            const response: IAddress = yield fetchAddress(id);
 
             if (response && response.house.address) {
               const area = {
                 id: response.id,
                 number: response.number,
+                str_number: response.str_number,
                 str_number_full: response.str_number_full,
                 house: response.house,
               };
