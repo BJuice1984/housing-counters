@@ -1,5 +1,5 @@
-import Header from './Header';
-import MeterTable from './MeterTable';
+import Header from './components/Header';
+import MeterTable from './components/MeterTable';
 
 function App() {
   return (
