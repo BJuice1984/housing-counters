@@ -15,9 +15,7 @@ const MeterRow: React.FC<MeterRowProps> = ({
   index,
 }) => {
   return (
-    <tr
-      className={`hover:bg-gray-50 border-b box-border text-left text-sm font-normal leading-5 h-[52px]`}
-    >
+    <tr className="hover:bg-gray-50 hover:cursor-pointer border-b box-border text-left text-sm font-normal leading-5 h-[52px]">
       <td>{index + 1}</td>
       <td>{meter._type.includes('HotWaterAreaMeter') ? 'ГВС' : 'ХВС'}</td>
       <td>

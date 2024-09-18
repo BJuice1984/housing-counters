@@ -8,8 +8,10 @@ module.exports = {
         'background-secondary': '#F0F3F7',
         'background-hover': '#F7F8F9',
         'background-table': '#E0E5EB',
+        'background-button': '#F2F5F8',
         'background-alert': '#FEE3E3',
         'text-main': '#1F2939',
+        'text-table-head': '#697180',
       },
       fontFamily: {
         primary: [

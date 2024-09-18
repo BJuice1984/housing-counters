@@ -10,40 +10,38 @@ const MeterTable = observer(() => {
     store.fetchMeters();
   }, [store]);
 
-  if (store.status === 'pending') {
-    return <div>Загрузка данных...</div>;
-  }
-
-  if (store.status === 'error') {
-    return <div>Произошла ошибка при загрузке данных.</div>;
-  }
-
   return (
-    <div className="max-h-[500px] overflow-y-auto rounded-lg">
-      <table className="min-w-full bg-white">
-        <thead className="bg-gray-100 sticky top-0 text-xs font-medium leading-4 text-left text-gray-700">
-          <tr className="p-2 border-b h-[52px]">
-            <th>№</th>
-            <th>Тип</th>
-            <th>Дата установки</th>
-            <th>Автоматический</th>
-            <th>Значение</th>
-            <th>Адрес</th>
+    <div className="max-h-[500px] overflow-y-auto border-b rounded-t-lg">
+      <table className="min-w-full bg-background-light">
+        <thead className="bg-gray-100 sticky top-0 text-xs font-medium leading-4 text-left text-text-table-head">
+          <tr className="p-2 border-b h-[32px]">
+            <th className="text-center w-[48px]">№</th>
+            <th className="w-[120px]">Тип</th>
+            <th className="w-[160px]">Дата установки</th>
+            <th className="w-[128px]">Автоматический</th>
+            <th className="w-[146px]">Текущие показания</th>
+            <th className="w-[430px]">Адрес</th>
             <th>Примечание</th>
             <th></th>
           </tr>
         </thead>
-        <tbody className="divide-y divide-gray-200">
-          {store.meters.map((meter, index) => (
-            <MeterRow
-              key={meter.id}
-              meter={meter}
-              address={store.addresses.get(meter.area.id)}
-              onDelete={store.deleteMeter}
-              index={index}
-            />
-          ))}
-        </tbody>
+        {store.status === 'pending' ? (
+          <div className="z-10">Загрузка данных...</div>
+        ) : store.status === 'error' ? (
+          <div className="z-10">Произошла ошибка при загрузке данных.</div>
+        ) : (
+          <tbody className="divide-y divide-gray-200">
+            {store.meters.map((meter, index) => (
+              <MeterRow
+                key={meter.id}
+                meter={meter}
+                address={store.addresses.get(meter.area.id)}
+                onDelete={store.deleteMeter}
+                index={index}
+              />
+            ))}
+          </tbody>
+        )}
       </table>
     </div>
   );

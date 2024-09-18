@@ -8,7 +8,7 @@ export const MetersModel = t.model('MetersModel', {
   }),
   is_automatic: t.maybeNull(t.boolean),
   communication: t.string,
-  description: t.string,
+  description: t.maybeNull(t.string),
   serial_number: t.string,
   installation_date: t.string,
   brand_name: t.maybeNull(t.string),

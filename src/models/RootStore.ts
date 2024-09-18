@@ -2,28 +2,48 @@ import { flow, Instance, t } from 'mobx-state-tree';
 import { MetersModel } from './MetersModel';
 import { AddressModel } from './AdressModel';
 import { deleteMeter, fetchAddress, fetchMeters } from '../api/apiService';
-import { IAddress, IMeter } from '../types/types';
+import { IAddress, IMeter, IServerResponse } from '../types/types';
 
 export const RootStore = t
   .model('RootStore', {
     meters: t.array(MetersModel),
     addresses: t.map(AddressModel),
+    offset: 0,
+    limit: 20,
+    totalCount: 0,
+    currentPage: 1,
+    totalPages: 1,
+    next: t.maybeNull(t.string),
+    previous: t.maybeNull(t.string),
     status: t.enumeration('Status', ['pending', 'done', 'error']),
   })
+  .views((self) => ({
+    get totalPagesCalc() {
+      return Math.ceil(self.totalCount / self.limit);
+    },
+  }))
   .actions((self) => ({
     fetchMeters: flow(function* () {
       self.status = 'pending';
       try {
-        const response: { results: IMeter[] } = yield fetchMeters(20, 20);
+        const response: IServerResponse = yield fetchMeters(
+          self.limit,
+          (self.currentPage - 1) * self.limit
+        );
         const meterModels = response.results.map((meter: IMeter) =>
           MetersModel.create(meter)
         );
         self.meters.replace(meterModels);
+        self.totalCount = response.count;
+        self.totalPages = self.totalPagesCalc;
+        self.next = response.next;
+        self.previous = response.previous;
         self.status = 'done';
 
         const areaIds = [
           ...new Set(response.results.map((meter: IMeter) => meter.area.id)),
         ];
+
         //@ts-ignore
         yield self.fetchAddresses(areaIds);
       } catch (error) {
@@ -72,6 +92,12 @@ export const RootStore = t
         self.status = 'error';
       }
     }),
+    setPage(page: number) {
+      self.currentPage = page;
+
+      //@ts-ignore
+      self.fetchMeters();
+    },
   }));
 
 export type RootStoreType = Instance<typeof RootStore>;

@@ -22,10 +22,17 @@ export interface IMeter {
   area: Area;
   is_automatic: boolean | null;
   communication: string;
-  description: string;
+  description: string | null;
   serial_number: string;
   installation_date: string;
   brand_name: string | null;
   model_name: string | null;
   initial_values: number[];
+}
+
+export interface IServerResponse {
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: IMeter[];
 }
