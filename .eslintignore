@@ -1,0 +1,14 @@
+node_modules/
+
+dist/
+build/
+
+*.config.js
+
+*.test.js
+*.spec.js
+
+*.css
+
+public/
+*.min.js
