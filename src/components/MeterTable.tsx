@@ -23,7 +23,7 @@ const MeterTable = observer(() => {
             <th className="w-[128px]">Автоматический</th>
             <th className="w-[146px]">Текущие показания</th>
             <th className="w-[430px]">Адрес</th>
-            <th>Примечание</th>
+            <th className="w-[300px]">Примечание</th>
             <th></th>
           </tr>
         </thead>

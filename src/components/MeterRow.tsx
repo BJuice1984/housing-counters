@@ -60,10 +60,10 @@ const MeterRow: React.FC<MeterRowProps> = ({
         )}
       </td>
       <td>{meter.description || 'Нет данных'}</td>
-      <td className="relative opacity-70 hover:opacity-100 transition-opacity duration-300">
+      <td className="text-right leading-3 relative opacity-70 hover:opacity-100 transition-opacity duration-300">
         <button
           onClick={() => onDelete(meter.id)}
-          className=" h-[40px] w-[40px] bg-background-trash rounded relative opacity-0 group-hover:opacity-100 transition-opacity duration-150"
+          className=" h-[40px] w-[40px] mr-4 bg-background-trash rounded relative opacity-0 group-hover:opacity-100 transition-opacity duration-150"
         >
           <img
             className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
