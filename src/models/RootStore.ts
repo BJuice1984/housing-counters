@@ -1,4 +1,4 @@
-import { flow, Instance, t } from 'mobx-state-tree';
+import { cast, flow, Instance, t } from 'mobx-state-tree';
 import { MetersModel } from './MetersModel';
 import { AddressModel } from './AdressModel';
 import { deleteMeter, fetchAddress, fetchMeters } from '../api/apiService';
@@ -44,8 +44,10 @@ export const RootStore = t
           ...new Set(response.results.map((meter: IMeter) => meter.area.id)),
         ];
 
-        //@ts-ignore
-        yield self.fetchAddresses(areaIds);
+        const storeWithFetchAddresses = cast(self) as typeof self & {
+          fetchAddresses: (ids: string[]) => Promise<void>;
+        };
+        yield storeWithFetchAddresses.fetchAddresses(areaIds);
       } catch (error) {
         console.error('Ошибка загрузки счётчика', error);
         self.status = 'error';
@@ -83,14 +85,13 @@ export const RootStore = t
         self.meters.replace(updatedMeters);
         self.status = 'done';
 
-        // Проверяем, нужно ли подгружать еще один элемент
         if (self.meters.length < self.limit && self.next) {
-          const nextOffset = self.currentPage * self.limit; // Смещение для следующего элемента
-          const response: IServerResponse = yield fetchMeters(1, nextOffset); // Загружаем 1 элемент
+          const nextOffset = self.currentPage * self.limit;
+          const response: IServerResponse = yield fetchMeters(1, nextOffset);
 
           if (response.results.length > 0) {
             const newMeter = MetersModel.create(response.results[0]);
-            self.meters.push(newMeter); // Добавляем элемент в текущую страницу
+            self.meters.push(newMeter);
           }
         }
       } catch (error) {
@@ -99,10 +100,9 @@ export const RootStore = t
       }
     }),
     setPage(page: number) {
-      self.currentPage = page;
+      (self as RootStoreType).currentPage = page;
 
-      //@ts-ignore
-      self.fetchMeters();
+      (self as RootStoreType).fetchMeters();
     },
   }));
 
