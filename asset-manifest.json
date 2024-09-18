@@ -1,15 +1,18 @@
 {
   "files": {
-    "main.css": "/housing-counters/static/css/main.98206089.css",
-    "main.js": "/housing-counters/static/js/main.eb8e4933.js",
+    "main.css": "/housing-counters/static/css/main.15adcdd6.css",
+    "main.js": "/housing-counters/static/js/main.5a41aa79.js",
     "static/js/453.373594e4.chunk.js": "/housing-counters/static/js/453.373594e4.chunk.js",
     "index.html": "/housing-counters/index.html",
-    "main.98206089.css.map": "/housing-counters/static/css/main.98206089.css.map",
-    "main.eb8e4933.js.map": "/housing-counters/static/js/main.eb8e4933.js.map",
+    "static/media/icon-trash.svg": "/housing-counters/static/media/icon-trash.7e953b4fbef0f79a4b61649c3341c81a.svg",
+    "static/media/icon-cold-water.svg": "/housing-counters/static/media/icon-cold-water.6f9c1ad2b7cebb0868b4.svg",
+    "static/media/icon-hot-water.svg": "/housing-counters/static/media/icon-hot-water.beef6844d073febae674.svg",
+    "main.15adcdd6.css.map": "/housing-counters/static/css/main.15adcdd6.css.map",
+    "main.5a41aa79.js.map": "/housing-counters/static/js/main.5a41aa79.js.map",
     "453.373594e4.chunk.js.map": "/housing-counters/static/js/453.373594e4.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.98206089.css",
-    "static/js/main.eb8e4933.js"
+    "static/css/main.15adcdd6.css",
+    "static/js/main.5a41aa79.js"
   ]
 }
