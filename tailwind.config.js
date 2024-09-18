@@ -36,6 +36,10 @@ module.exports = {
           'monospace',
         ],
       },
+      backgroundImage: {
+        'cold-water': "url('/images/icon-cold-water.svg')",
+        'hot-water': "url('/images/icon-hot-water.svg')",
+      },
     },
   },
   plugins: [],

@@ -12,9 +12,7 @@ const Pagination = observer(() => {
   const renderFirstPages = () => {
     const pages = [];
     const startPage = store.currentPage > 2 ? store.currentPage - 2 : 1;
-    console.log('🚀 ~ renderFirstPages ~ startPage:', startPage);
     const endPage = startPage + 4;
-    console.log('🚀 ~ renderFirstPages ~ endPage:', endPage);
 
     for (let i = startPage; i <= endPage && i <= store.totalPages - 3; i++) {
       pages.push(

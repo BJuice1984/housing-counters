@@ -37,7 +37,7 @@ const MeterTable = observer(() => {
                 meter={meter}
                 address={store.addresses.get(meter.area.id)}
                 onDelete={store.deleteMeter}
-                index={index}
+                index={(store.currentPage - 1) * store.limit + index}
               />
             ))}
           </tbody>

@@ -17,13 +17,33 @@ const MeterRow: React.FC<MeterRowProps> = ({
   return (
     <tr className="hover:bg-gray-50 hover:cursor-pointer border-b box-border text-left text-sm font-normal leading-5 h-[52px]">
       <td>{index + 1}</td>
-      <td>{meter._type.includes('HotWaterAreaMeter') ? 'ГВС' : 'ХВС'}</td>
+      <td
+        className={`bg-no-repeat bg-left text-left pl-5 ${
+          meter._type.includes('HotWaterAreaMeter')
+            ? 'bg-hot-water'
+            : meter._type.includes('ColdWaterAreaMeter')
+              ? 'bg-cold-water'
+              : 'bg-gradient-to-r from-cyan-500 to-blue-500'
+        }`}
+      >
+        {meter._type.includes('HotWaterAreaMeter')
+          ? 'ГВС'
+          : meter._type.includes('ColdWaterAreaMeter')
+            ? 'ХВС'
+            : meter._type}
+      </td>
       <td>
         {meter.installation_date
           ? new Date(meter.installation_date).toLocaleDateString()
           : 'Неизвестно'}
       </td>
-      <td>{meter.is_automatic ? 'Да' : 'Нет'}</td>
+      <td>
+        {meter.is_automatic === null
+          ? 'Нет данных'
+          : meter.is_automatic
+            ? 'Да'
+            : 'Нет'}
+      </td>
       <td>
         {meter.initial_values.length > 0
           ? meter.initial_values[0]
