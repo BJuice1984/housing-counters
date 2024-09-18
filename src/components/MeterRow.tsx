@@ -1,5 +1,6 @@
 import React from 'react';
 import { IMeter, IAddress } from '../types/types';
+import trashLogo from '../images/icon-trash.svg';
 
 interface MeterRowProps {
   meter: IMeter;
@@ -15,8 +16,8 @@ const MeterRow: React.FC<MeterRowProps> = ({
   index,
 }) => {
   return (
-    <tr className="hover:bg-gray-50 hover:cursor-pointer border-b box-border text-left text-sm font-normal leading-5 h-[52px]">
-      <td>{index + 1}</td>
+    <tr className="hover:bg-gray-50 hover:cursor-pointer border-b box-border text-left text-sm font-normal leading-5 h-[52px] group">
+      <td className="text-center">{index + 1}</td>
       <td
         className={`bg-no-repeat bg-left text-left pl-5 ${
           meter._type.includes('HotWaterAreaMeter')
@@ -55,12 +56,16 @@ const MeterRow: React.FC<MeterRowProps> = ({
           : 'Загрузка'}
       </td>
       <td>{meter.description || 'Нет данных'}</td>
-      <td>
+      <td className="relative opacity-70 hover:opacity-100 transition-opacity duration-300">
         <button
           onClick={() => onDelete(meter.id)}
-          className="text-red-500 hover:underline"
+          className=" h-[40px] w-[40px] bg-background-trash rounded relative opacity-0 group-hover:opacity-100 transition-opacity duration-150"
         >
-          Удалить
+          <img
+            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+            src={trashLogo}
+            alt="Изображение корзины"
+          />
         </button>
       </td>
     </tr>
