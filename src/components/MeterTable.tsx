@@ -11,9 +11,9 @@ const MeterTable = observer(() => {
   }, [store]);
 
   return (
-    <div className="max-h-[500px] overflow-y-auto border-b rounded-t-lg">
+    <div className="flex-1 overflow-y-auto border-b scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200 h-full">
       <table className="min-w-full bg-background-light">
-        <thead className="bg-gray-100 sticky top-0 text-xs font-medium leading-4 text-left text-text-table-head">
+        <thead className="bg-background-secondary sticky top-0 text-xs font-medium leading-4 text-left text-text-table-head">
           <tr className="p-2 border-b h-[32px]">
             <th className="text-center w-[48px]">№</th>
             <th className="w-[120px]">Тип</th>

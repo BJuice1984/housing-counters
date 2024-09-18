@@ -4,10 +4,10 @@ import Pagination from './components/Pagination';
 
 function App() {
   return (
-    <div className="flex flex-col min-h-screen bg-background-main">
-      <div className="flex flex-col flex-1 p-4">
+    <div className="h-full bg-background-main">
+      <div className="flex flex-col h-screen flex-1 p-4">
         <Header />
-        <main className="grid flex-1 bg-background-light border border-gray-200 rounded-lg">
+        <main className="flex flex-col bg-background-light border box-border border-background-table rounded-lg overflow-hidden">
           <MeterTable />
           <Pagination />
         </main>
