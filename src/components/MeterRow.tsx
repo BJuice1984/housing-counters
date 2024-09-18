@@ -6,8 +6,6 @@ interface MeterRowProps {
   address?: IAddress;
   onDelete: (id: string) => void;
   index: number;
-  rowClassName?: string;
-  cellClassName?: string;
 }
 
 const MeterRow: React.FC<MeterRowProps> = ({
@@ -15,37 +13,31 @@ const MeterRow: React.FC<MeterRowProps> = ({
   address,
   onDelete,
   index,
-  rowClassName = '',
-  cellClassName = '',
 }) => {
   return (
-    <tr className={`hover:bg-gray-50 ${rowClassName}`}>
-      <td className={`border-b ${cellClassName}`}>{index + 1}</td>
-      <td className={`border-b ${cellClassName}`}>
-        {meter._type.includes('HotWaterAreaMeter') ? 'ГВС' : 'ХВС'}
-      </td>
-      <td className={`border-b ${cellClassName}`}>
+    <tr
+      className={`hover:bg-gray-50 border-b box-border text-left text-sm font-normal leading-5 h-[52px]`}
+    >
+      <td>{index + 1}</td>
+      <td>{meter._type.includes('HotWaterAreaMeter') ? 'ГВС' : 'ХВС'}</td>
+      <td>
         {meter.installation_date
           ? new Date(meter.installation_date).toLocaleDateString()
           : 'Неизвестно'}
       </td>
-      <td className={`border-b ${cellClassName}`}>
-        {meter.is_automatic ? 'Да' : 'Нет'}
-      </td>
-      <td className={`border-b ${cellClassName}`}>
+      <td>{meter.is_automatic ? 'Да' : 'Нет'}</td>
+      <td>
         {meter.initial_values.length > 0
           ? meter.initial_values[0]
           : 'Нет данных'}
       </td>
-      <td className={`border-b ${cellClassName}`}>
+      <td>
         {address
           ? `${address.house.address}, ${address.str_number_full}`
           : 'Загрузка'}
       </td>
-      <td className={`border-b ${cellClassName}`}>
-        {meter.description || 'Нет данных'}
-      </td>
-      <td className={`border-b ${cellClassName}`}>
+      <td>{meter.description || 'Нет данных'}</td>
+      <td>
         <button
           onClick={() => onDelete(meter.id)}
           className="text-red-500 hover:underline"
