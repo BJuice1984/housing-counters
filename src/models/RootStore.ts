@@ -80,13 +80,19 @@ export const RootStore = t
       try {
         yield deleteMeter(id);
         const updatedMeters = self.meters.filter((meter) => meter.id !== id);
-
         self.meters.replace(updatedMeters);
         self.status = 'done';
 
-        // if (self.meters.length < 20) {
-        //   yield self.fetchMeters();
-        // }
+        // Проверяем, нужно ли подгружать еще один элемент
+        if (self.meters.length < self.limit && self.next) {
+          const nextOffset = self.currentPage * self.limit; // Смещение для следующего элемента
+          const response: IServerResponse = yield fetchMeters(1, nextOffset); // Загружаем 1 элемент
+
+          if (response.results.length > 0) {
+            const newMeter = MetersModel.create(response.results[0]);
+            self.meters.push(newMeter); // Добавляем элемент в текущую страницу
+          }
+        }
       } catch (error) {
         console.error(`Ошибка удаления счётчика с id: ${id}`, error);
         self.status = 'error';
