@@ -40,6 +40,20 @@ module.exports = {
         'cold-water': "url('/src/images/icon-cold-water.svg')",
         'hot-water': "url('/src/images/icon-hot-water.svg')",
       },
+      animation: {
+        fadeIn: 'fadeIn 0.5s ease-in-out',
+        fadeOut: 'fadeOut 0.5s ease-in-out',
+      },
+      keyframes: {
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+        fadeOut: {
+          '100%': { opacity: '1' },
+          '0%': { opacity: '0' },
+        },
+      },
     },
   },
   plugins: [require('tailwind-scrollbar')],

@@ -1,6 +1,8 @@
 import React from 'react';
 import { IMeter, IAddress } from '../types/types';
 import trashLogo from '../images/icon-trash.svg';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 interface MeterRowProps {
   meter: IMeter;
@@ -50,10 +52,12 @@ const MeterRow: React.FC<MeterRowProps> = ({
           ? meter.initial_values[0]
           : 'Нет данных'}
       </td>
-      <td>
-        {address
-          ? `${address.house.address}, ${address.str_number_full}`
-          : 'Загрузка'}
+      <td className="relative">
+        {address ? (
+          `${address.house.address}, ${address.str_number_full}`
+        ) : (
+          <Skeleton width={200} height={20} />
+        )}
       </td>
       <td>{meter.description || 'Нет данных'}</td>
       <td className="relative opacity-70 hover:opacity-100 transition-opacity duration-300">
