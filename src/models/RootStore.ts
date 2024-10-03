@@ -56,24 +56,14 @@ export const RootStore = t
     fetchAddresses: flow(function* (areaIds: string[]) {
       const newAreasIds = areaIds.filter((id) => !self.addresses.has(id));
       if (newAreasIds.length > 0) {
-        for (const id of newAreasIds) {
-          try {
-            const response: IAddress = yield fetchAddress(id);
+        try {
+          const response: IAddress[] = yield fetchAddress(newAreasIds);
 
-            if (response && response.house.address) {
-              const area = {
-                id: response.id,
-                number: response.number,
-                str_number: response.str_number,
-                str_number_full: response.str_number_full,
-                house: response.house,
-              };
-
-              self.addresses.set(area.id, area);
-            }
-          } catch (error) {
-            console.error(`Ошибка загрузки адреса с id: ${id}`, error);
-          }
+          response.forEach((address) => {
+            self.addresses.set(address.id, AddressModel.create(address));
+          });
+        } catch (error) {
+          console.error('Ошибка загрузки адресов', error);
         }
       }
     }),
