@@ -1,18 +1,18 @@
 {
   "files": {
     "main.css": "/housing-counters/static/css/main.b944cb03.css",
-    "main.js": "/housing-counters/static/js/main.17e65db9.js",
+    "main.js": "/housing-counters/static/js/main.300aa6fd.js",
     "static/js/453.373594e4.chunk.js": "/housing-counters/static/js/453.373594e4.chunk.js",
     "index.html": "/housing-counters/index.html",
     "static/media/icon-trash.svg": "/housing-counters/static/media/icon-trash.7e953b4fbef0f79a4b61649c3341c81a.svg",
     "static/media/icon-cold-water.svg": "/housing-counters/static/media/icon-cold-water.6f9c1ad2b7cebb0868b4.svg",
     "static/media/icon-hot-water.svg": "/housing-counters/static/media/icon-hot-water.beef6844d073febae674.svg",
     "main.b944cb03.css.map": "/housing-counters/static/css/main.b944cb03.css.map",
-    "main.17e65db9.js.map": "/housing-counters/static/js/main.17e65db9.js.map",
+    "main.300aa6fd.js.map": "/housing-counters/static/js/main.300aa6fd.js.map",
     "453.373594e4.chunk.js.map": "/housing-counters/static/js/453.373594e4.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.b944cb03.css",
-    "static/js/main.17e65db9.js"
+    "static/js/main.300aa6fd.js"
   ]
 }
